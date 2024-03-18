@@ -1,8 +1,5 @@
 import pytest
-import requests
-
-# Define the base URL of the currency check service
-BASE_URL = "http://localhost:8000/check-currency"
+from app import create_app  # Import the create_app function from your Flask app file
 
 # Test data with different thresholds and base currencies
 # The expected responses only include "NIS", "EUR", and "USD", excluding the base currency
@@ -22,41 +19,48 @@ test_data = [
 ]
 
 
-@pytest.mark.parametrize("base_currency, threshold, expected_response", test_data)
-def test_check_currency(base_currency, threshold, expected_response):
-    # Construct the request URL with the provided parameters
-    url = f"{BASE_URL}?threshold={threshold}&baseCurrency={base_currency}"
+@pytest.fixture
+def client():
+    app = create_app()
+    with app.test_client() as client:
+        yield client
 
-    # Send the GET request to the service
-    response = requests.get(url)
+
+@pytest.mark.parametrize("base_currency, threshold, expected_response", test_data)
+def test_check_currency(client, base_currency, threshold, expected_response):
+    # Construct the request URL with the provided parameters
+    url = f"/check-currency?threshold={threshold}&baseCurrency={base_currency}"
+
+    # Use the test client to send a GET request to the app
+    response = client.get(url)
 
     # Assert that the response status code is 200 (OK)
     assert response.status_code == 200
 
     # Assert that the response JSON matches the expected response
-    assert response.json() == expected_response
+    assert response.json == expected_response
 
 
-def test_check_missing_parameters():
-    # Send a GET request without the required parameters
-    response = requests.get(BASE_URL)
-
-    # Assert that the response status code is 400 (Bad Request)
-    assert response.status_code == 400
-
-    # Assert that the response JSON contains the expected error message
-    assert response.json() == {'error': 'Missing required parameters'}
-
-
-def test_check_invalid_currency_symbol():
-    # Send a GET request with an invalid currency code
-    response = requests.get(f"{BASE_URL}?threshold=1.0&baseCurrency=XYZ")
+def test_check_missing_parameters(client):
+    # Use the test client to send a GET request without the required parameters
+    response = client.get("/check-currency")
 
     # Assert that the response status code is 400 (Bad Request)
     assert response.status_code == 400
 
     # Assert that the response JSON contains the expected error message
-    assert response.json() == {'error': 'Invalid currency symbol'}
+    assert response.json == {'error': 'Missing required parameters'}
+
+
+def test_check_invalid_currency_symbol(client):
+    # Use the test client to send a GET request with an invalid currency code
+    response = client.get("/check-currency?threshold=1.0&baseCurrency=XYZ")
+
+    # Assert that the response status code is 400 (Bad Request)
+    assert response.status_code == 400
+
+    # Assert that the response JSON contains the expected error message
+    assert response.json == {'error': 'Invalid currency symbol'}
 
 
 if __name__ == "__main__":

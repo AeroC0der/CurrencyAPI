@@ -56,3 +56,18 @@ To run the tests, execute the following command:
   pytest
   ```
 
+
+## Design Choices and Trade-offs
+
+The currency check service is designed to be a simple and efficient Flask application that provides an API for checking exchange rates against a threshold. The following are some of the key design choices and trade-offs made:
+
+1. **API Design**: The API is designed to be straightforward, with clear endpoints and parameters. This makes it easy to use and integrate with other services. However, the simplicity may limit more complex functionality or customization.
+
+2. **Error Handling**: Basic error handling is implemented to provide clear error messages for missing parameters or invalid currency symbols. This improves the usability of the API but does not cover all possible error scenarios.
+
+3. **Testing**: Pytest is used for testing the application, ensuring that the core functionality works as expected. However, the test coverage may not be comprehensive, covering only the main use cases.
+
+4. **Currency Data Source**: The application relies on an external API for currency data, with the free subscription, which simplifies the implementation but introduces a dependency on the availability and accuracy of the external service, with the baseCurrency being EUR.
+
+Overall, the design choices prioritize simplicity and ease of use, with some trade-offs in terms of scalability, complexity, and dependency on external services.
+

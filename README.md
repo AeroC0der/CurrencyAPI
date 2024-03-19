@@ -8,19 +8,21 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3.8 or higher
 - pip (Python package installer)
+- Flask
+- exchangeratesapi.io API key
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/AeroC0der/CurrencyAPI.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd project-directory
+   cd your-repository
    ```
 
 3. Install the required Python packages:
@@ -53,7 +55,7 @@ Before you begin, ensure you have met the following requirements:
 To run the tests, execute the following command:
 
   ```bash
-  pytest
+  pytest . tests.py
   ```
 
 

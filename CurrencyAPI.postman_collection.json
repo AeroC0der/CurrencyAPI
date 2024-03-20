@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "83329c09-390a-4a16-9e27-6fad71288ebb",
+		"name": "CurrencyAPI",
+		"description": "Endpoint:\n\n- GET  \n    /  \n    returning \"API is working!\" to indicate it is live.  \n    \n- GET  \n    /check-currency?threshold={num: float}&baseCurrency={symbol: str}  \n    the core exchange rates function.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26927439"
+	},
+	"item": [
+		{
+			"name": "check-currency USD",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/check-currency?threshold=1.2&baseCurrency=USD",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"check-currency"
+					],
+					"query": [
+						{
+							"key": "threshold",
+							"value": "1.2"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check-currency EUR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/check-currency?threshold=2&baseCurrency=EUR",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"check-currency"
+					],
+					"query": [
+						{
+							"key": "threshold",
+							"value": "2"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "EUR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check-currency NIS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/check-currency?threshold=0.5&baseCurrency=NIS",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"check-currency"
+					],
+					"query": [
+						{
+							"key": "threshold",
+							"value": "0.5"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "NIS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check-currency Foreign",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/check-currency?threshold=0.02&baseCurrency=JPY",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"check-currency"
+					],
+					"query": [
+						{
+							"key": "threshold",
+							"value": "0.02"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "JPY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

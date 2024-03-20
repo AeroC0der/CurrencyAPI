@@ -71,5 +71,7 @@ The currency check service is designed to be a simple and efficient Flask applic
 
 4. **Currency Data Source**: The application relies on an external API for currency data, with the free subscription, which simplifies the implementation but introduces a dependency on the availability and accuracy of the external service, with the baseCurrency being EUR.
 
+5. **Scalability**: The application is designed with flask which is lightweight, to handle a moderate number of requests, but it may not scale well to handle a large volume of requests or a high frequency of updates to exchange rates.
+
 Overall, the design choices prioritize simplicity and ease of use, with some trade-offs in terms of scalability, complexity, and dependency on external services.
 
